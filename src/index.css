@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap");
+
+:root {
+  --ink: #0e1630;
+  --ink-2: #19244a;
+  --ink-3: #26346a;
+  --blue: #3a5bff;
+  --blue-dark: #2641d9;
+  --blue-soft: #e8ecff;
+  --amber: #ffb020;
+  --amber-soft: #fff3d6;
+  --green: #12a474;
+  --green-soft: #e1f6ee;
+  --red: #e5484d;
+  --red-soft: #fdecec;
+  --bg: #f2f4fa;
+  --card: #ffffff;
+  --line: #e2e6f0;
+  --text: #18203a;
+  --muted: #667090;
+
+  --font-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(14, 22, 48, 0.05), 0 8px 24px -12px rgba(14, 22, 48, 0.18);
+  --shadow-lift: 0 2px 4px rgba(14, 22, 48, 0.06), 0 16px 32px -14px rgba(38, 65, 217, 0.35);
+
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--blue);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(58, 91, 255, 0.45);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
