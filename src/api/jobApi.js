@@ -1,10 +1,9 @@
 
 import axios from "axios";
 
-// const API_BASE_URL =
-//   import.meta.env.VITE_API_BASE_URL || "http://192.168.0.115:8080/api";
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -30,13 +29,11 @@ api.interceptors.request.use(
 // AUTHENTICATION APIs
 // ===============================
 
-// Register user
 export async function registerUser(userData) {
   const response = await api.post("/users/register", userData);
   return response.data;
 }
 
-// Login user
 export async function loginUser(credentials) {
   const response = await api.post("/users/login", credentials);
 
@@ -48,16 +45,13 @@ export async function loginUser(credentials) {
   return response.data;
 }
 
-// Logout user
 export function logoutUser() {
   localStorage.removeItem("jobadvisor_token");
   localStorage.removeItem("jobadvisor_user");
 }
 
-// Get logged-in user
 export function getLoggedInUser() {
   const user = localStorage.getItem("jobadvisor_user");
-
   return user ? JSON.parse(user) : null;
 }
 
@@ -70,7 +64,12 @@ export async function getJobs() {
   return response.data;
 }
 
-// Advanced job search with backend filtering, sorting and pagination.
+export async function getJobById(jobId) {
+  const response = await api.get(`/jobs/${jobId}`);
+  return response.data;
+}
+
+// Advanced job search
 export async function searchJobs(filters = {}) {
   const response = await api.get("/jobs/search", {
     params: {
@@ -92,10 +91,7 @@ export async function searchJobs(filters = {}) {
 // ===============================
 
 export async function getUserApplications(userId) {
-  const response = await api.get(
-    `/applications/user/${userId}`
-  );
-
+  const response = await api.get(`/applications/user/${userId}`);
   return response.data;
 }
 
@@ -115,6 +111,11 @@ export async function markJobAsApplied(userId, jobId) {
     status: "APPLIED",
   });
 
+  return response.data;
+}
+
+export async function submitApplication(applicationData) {
+  const response = await api.post("/applications", applicationData);
   return response.data;
 }
 
@@ -142,10 +143,7 @@ export async function updateUserProfile(userId, profile) {
 // ===============================
 
 export async function getRecommendedJobs(userId) {
-  const response = await api.get(
-    `/jobs/recommendations/${userId}`
-  );
-
+  const response = await api.get(`/jobs/recommendations/${userId}`);
   return response.data;
 }
 
@@ -153,7 +151,6 @@ export async function getRecommendedJobs(userId) {
 // ADMIN APIs
 // ===============================
 
-// Get all jobs (ADMIN can view)
 export async function getAllAdminJobs() {
   const response = await api.get("/jobs", {
     params: {
@@ -166,30 +163,26 @@ export async function getAllAdminJobs() {
   return response.data;
 }
 
-// Create job (ADMIN only)
 export async function createJob(jobData) {
   const response = await api.post("/jobs", jobData);
   return response.data;
 }
 
-// Update job (ADMIN only)
 export async function updateJob(jobId, jobData) {
   const response = await api.put(`/jobs/${jobId}`, jobData);
   return response.data;
 }
 
-// Delete job (ADMIN only)
 export async function deleteJob(jobId) {
   const response = await api.delete(`/jobs/${jobId}`);
   return response.data;
 }
 
-// Get all applications (ADMIN only, backend authorization required)
 export async function getAllApplications() {
   const response = await api.get("/applications");
   return response.data;
 }
-// Update application status (ADMIN only)
+
 export async function updateApplicationStatus(applicationId, status) {
   const response = await api.patch(
     `/applications/${applicationId}/status`,
@@ -199,18 +192,5 @@ export async function updateApplicationStatus(applicationId, status) {
     }
   );
 
-  return response.data;
-}
-
-
-// Public job details
-export async function getJobById(jobId) {
-  const response = await api.get(`/jobs/${jobId}`);
-  return response.data;
-}
-
-// Public applicant submission. Matching is calculated by the backend.
-export async function submitApplication(applicationData) {
-  const response = await api.post("/applications", applicationData);
   return response.data;
 }
