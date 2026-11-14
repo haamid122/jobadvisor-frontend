@@ -8,12 +8,11 @@ import {
 
 const initialForm = {
   jobTitle: "",
-  companyName: "",
+  track: "",
   location: "",
   requiredSkills: "",
   jobDescription: "",
   experienceLevel: "",
-  jobUrl: "",
 };
 
 export default function AdminJobs() {
@@ -56,12 +55,11 @@ export default function AdminJobs() {
     setEditingId(job.id);
     setFormData({
       jobTitle: job.jobTitle || "",
-      companyName: job.companyName || "",
+      track: job.track || "",
       location: job.location || "",
       requiredSkills: job.requiredSkills || "",
       jobDescription: job.jobDescription || "",
       experienceLevel: job.experienceLevel || "",
-      jobUrl: job.jobUrl || "",
     });
     setError("");
     setSuccess("");
@@ -83,22 +81,13 @@ export default function AdminJobs() {
       Object.entries(formData).map(([key, value]) => [key, value.trim()])
     );
 
-    for (const field of ["jobTitle", "companyName", "location", "requiredSkills", "jobDescription", "experienceLevel"]) {
+    for (const field of ["jobTitle", "track", "location", "requiredSkills", "jobDescription", "experienceLevel"]) {
       if (!payload[field]) {
         setError(`${field.replace(/([A-Z])/g, " $1")} is required.`);
         return;
       }
     }
 
-    if (payload.jobUrl) {
-      try {
-        const url = new URL(payload.jobUrl);
-        if (!["http:", "https:"].includes(url.protocol)) throw new Error();
-      } catch {
-        setError("Enter a valid HTTP or HTTPS job URL.");
-        return;
-      }
-    }
 
     try {
       setSaving(true);
@@ -157,11 +146,10 @@ export default function AdminJobs() {
         <form className="admin-job-form" onSubmit={handleSubmit}>
           <div className="admin-form-grid">
             <div className="admin-field"><label htmlFor="jobTitle">Job Title *</label><input id="jobTitle" name="jobTitle" maxLength="255" value={formData.jobTitle} onChange={handleChange} required /></div>
-            <div className="admin-field"><label htmlFor="companyName">Company Name *</label><input id="companyName" name="companyName" maxLength="255" value={formData.companyName} onChange={handleChange} required /></div>
+            <div className="admin-field"><label htmlFor="track">Track *</label><input id="track" name="track" maxLength="255" value={formData.track} onChange={handleChange} required /></div>
             <div className="admin-field"><label htmlFor="location">Location *</label><input id="location" name="location" maxLength="255" value={formData.location} onChange={handleChange} required /></div>
             <div className="admin-field"><label htmlFor="experienceLevel">Experience Level *</label><input id="experienceLevel" name="experienceLevel" value={formData.experienceLevel} onChange={handleChange} required /></div>
             <div className="admin-field"><label htmlFor="requiredSkills">Required Skills * (comma-separated)</label><input id="requiredSkills" name="requiredSkills" maxLength="2000" value={formData.requiredSkills} onChange={handleChange} placeholder="Java, Spring Boot, MySQL" required /></div>
-            <div className="admin-field"><label htmlFor="jobUrl">Job URL</label><input id="jobUrl" type="url" name="jobUrl" maxLength="2048" value={formData.jobUrl} onChange={handleChange} placeholder="https://company.com/careers" /></div>
           </div>
           <div><label htmlFor="jobDescription">Job Description *</label><textarea id="jobDescription" name="jobDescription" maxLength="5000" value={formData.jobDescription} onChange={handleChange} rows={5} required /></div>
           <p className="admin-form-hint">Fields marked * are required. Required skills should be separated by commas.</p>
@@ -181,10 +169,10 @@ export default function AdminJobs() {
           jobs.length === 0 ? <div className="empty-state"><h3>No jobs available</h3><p>Add a job using the form above.</p></div> :
           <div className="admin-table-wrapper">
             <table className="admin-table">
-              <thead><tr><th>ID</th><th>Job Title</th><th>Company</th><th>Location</th><th>Experience</th><th>Actions</th></tr></thead>
+              <thead><tr><th>ID</th><th>Job Title</th><th>Track</th><th>Location</th><th>Experience</th><th>Actions</th></tr></thead>
               <tbody>{jobs.map((job) => (
                 <tr key={job.id}>
-                  <td>{job.id}</td><td>{job.jobTitle || "-"}</td><td>{job.companyName || "-"}</td><td>{job.location || "-"}</td><td>{job.experienceLevel || "-"}</td>
+                  <td>{job.id}</td><td>{job.jobTitle || "-"}</td><td>{job.track || "-"}</td><td>{job.location || "-"}</td><td>{job.experienceLevel || "-"}</td>
                   <td><div className="admin-table-actions">
                     <button type="button" onClick={() => handleEdit(job)}>Edit</button>
                     <button type="button" onClick={() => handleDelete(job.id)} disabled={deletingId === job.id}>{deletingId === job.id ? "Deleting..." : "Delete"}</button>

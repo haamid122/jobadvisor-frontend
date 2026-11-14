@@ -46,25 +46,22 @@ export default function MyApplications({
                 job?.title ||
                 `Job #${application.jobId}`;
 
-              const company =
-                job?.companyName ||
-                job?.company ||
-                "Company";
+              const track = job?.track || "Track not specified";
 
               return (
                 <div
                   className="application-row"
                   key={application.id ?? index}
                 >
-                  <div className="application-company-avatar">
-                    {company.charAt(0).toUpperCase()}
+                  <div className="application-track-avatar">
+                    {track.charAt(0).toUpperCase()}
                   </div>
 
                   <div className="application-info">
                     <h3>{title}</h3>
 
                     <p>
-                      {company} · Applied on{" "}
+                      {track} · Applied on{" "}
                       {application.appliedDate || "Date not available"}
                     </p>
                   </div>
@@ -81,7 +78,7 @@ export default function MyApplications({
             <h3>No applications tracked yet</h3>
             <p>
               Go to Find Jobs and mark a job as applied after
-              applying on the company's website.
+              applying through the application process.
             </p>
           </div>
         )}

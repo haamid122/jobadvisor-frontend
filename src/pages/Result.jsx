@@ -37,7 +37,7 @@ export default function Result() {
         <p className="public-muted">Your application has been submitted successfully.</p>
         <div className="result-job-summary">
           <h2>{job.jobTitle || `Job #${result.jobId}`}</h2>
-          <p>{job.companyName || ""} {job.location ? `· ${job.location}` : ""}</p>
+          <p>{job.track || ""} {job.location ? `· ${job.location}` : ""}</p>
           <span>Application ID: {result.id}</span>
         </div>
         <div className="result-score">

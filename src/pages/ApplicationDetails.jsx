@@ -189,8 +189,8 @@ export default function ApplicationDetails() {
           </div>
 
           <div>
-            <span>Company</span>
-            <strong>{job?.companyName || "Not available"}</strong>
+            <span>Track</span>
+            <strong>{job?.track || "Not available"}</strong>
           </div>
 
           <div>

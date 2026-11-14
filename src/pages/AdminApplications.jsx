@@ -59,7 +59,7 @@ function exportApplicationsToCsv(applications) {
     "Applicant Name",
     "Applicant Email",
     "Job Title",
-    "Company",
+    "Track",
     "Match Score",
     "Matched Skills",
     "Missing Skills",
@@ -72,7 +72,7 @@ function exportApplicationsToCsv(applications) {
     application.applicantName,
     application.applicantEmail,
     getJobTitle(application),
-    application.job?.companyName,
+    application.job?.track,
     `${Number(application.matchScore ?? 0)}%`,
     displaySkills(application.matchedSkills),
     displaySkills(application.missingSkills),
@@ -532,7 +532,7 @@ export default function AdminApplications() {
                         <td>
                           <strong>{getJobTitle(application)}</strong>
                           <br />
-                          <span>{job?.companyName || "—"}</span>
+                          <span>{job?.track || "—"}</span>
                         </td>
 
                         <td>

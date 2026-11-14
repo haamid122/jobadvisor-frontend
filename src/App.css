@@ -673,7 +673,7 @@ textarea {
 }
 
 .company-avatar,
-.application-company-avatar,
+.application-track-avatar,
 .profile-avatar {
   display: grid;
   place-items: center;
@@ -839,7 +839,7 @@ textarea {
   background: #fff;
 }
 
-.application-company-avatar {
+.application-track-avatar {
   width: 46px;
   height: 46px;
   border-radius: 14px;
@@ -1632,7 +1632,7 @@ textarea {
 .public-job-card-heading, .public-job-identity { display:flex; align-items:center; min-width:0; }
 .public-job-card-heading { justify-content:space-between; gap:12px; }
 .public-job-identity { gap:13px; }
-.public-company-avatar { display:grid; flex:0 0 48px; width:48px; height:48px; place-items:center; border:1px solid var(--blue-soft); border-radius:13px; color:var(--blue-dark); background:var(--blue-soft); font-family:var(--font-display); font-size:21px; font-weight:800; }
+.public-track-avatar { display:grid; flex:0 0 48px; width:48px; height:48px; place-items:center; border:1px solid var(--blue-soft); border-radius:13px; color:var(--blue-dark); background:var(--blue-soft); font-family:var(--font-display); font-size:21px; font-weight:800; }
 .public-job-title-group { min-width:0; }
 .public-job-title-group h2 { overflow-wrap:anywhere; color:var(--ink); font-size:18px; }
 .public-job-title-group p { margin-top:3px; color:var(--muted); font-size:14px; }

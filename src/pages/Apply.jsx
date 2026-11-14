@@ -122,7 +122,7 @@ export default function Apply() {
         <h1>Apply for {job.jobTitle || "this job"}</h1>
 
         <p className="public-muted">
-          {job.companyName || ""}
+          {job.track || ""}
           {job.location ? ` · ${job.location}` : ""}
         </p>
 

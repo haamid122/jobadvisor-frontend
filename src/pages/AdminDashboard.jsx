@@ -132,7 +132,7 @@ export default function AdminDashboard() {
                       {application.applicantName || "Applicant"} applied for {job?.jobTitle || `Job #${application.jobId ?? "-"}`}
                     </strong>
                     <span>
-                      {application.applicantEmail || "Email unavailable"} · {job?.companyName || "Company unavailable"}
+                      {application.applicantEmail || "Email unavailable"} · {job?.track || "Track unavailable"}
                     </span>
                   </div>
                   <div>

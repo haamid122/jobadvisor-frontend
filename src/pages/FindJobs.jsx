@@ -4,7 +4,7 @@ import { searchJobs } from "../api/jobApi";
 import archintxLogo from "../assets/archintx-logo.png";
 
 function getTitle(job) { return job?.jobTitle || job?.title || "Job Title"; }
-function getCompany(job) { return job?.companyName || job?.company || "Company"; }
+function getTrack(job) { return job?.track || "Track not specified"; }
 function getLocation(job) { return job?.location || "Location not specified"; }
 function getJobId(job) { return job?.id ?? job?.jobId; }
 function getSkills(job) {
@@ -31,10 +31,10 @@ export function JobCard({ recommendation, applications = [] }) {
     <article className="public-job-card">
       <div className="public-job-card-heading">
         <div className="public-job-identity">
-          <div className="public-company-avatar" aria-hidden="true">{getCompany(job).charAt(0).toUpperCase()}</div>
+          <div className="public-track-avatar" aria-hidden="true">{getTrack(job).charAt(0).toUpperCase()}</div>
           <div className="public-job-title-group">
             <h2>{getTitle(job)}</h2>
-            <p>{getCompany(job)}</p>
+            <p>{getTrack(job)}</p>
           </div>
         </div>
         {isApplied ? <span className="public-job-badge applied">Applied</span> : match !== undefined ? <span className="public-job-badge">{match}% match</span> : job?.experienceLevel ? <span className="public-job-badge">{job.experienceLevel}</span> : null}
@@ -173,7 +173,7 @@ export default function FindJobs({ recommendations = [], applications = [], onRe
         </div>
 
         <form className="public-job-filter" onSubmit={handleSearch}>
-          <label className="public-search-field"><span aria-hidden="true">⌕</span><input name="search" value={formFilters.search} onChange={updateFilter} placeholder="Search by job title or company" /></label>
+          <label className="public-search-field"><span aria-hidden="true">⌕</span><input name="search" value={formFilters.search} onChange={updateFilter} placeholder="Search by job title or track" /></label>
           <label><span className="sr-only">Location</span><input name="location" value={formFilters.location} onChange={updateFilter} placeholder="Location" /></label>
           <label><span className="sr-only">Experience level</span><input name="experienceLevel" value={formFilters.experienceLevel} onChange={updateFilter} placeholder="Experience" /></label>
           <label><span className="sr-only">Required skill</span><input name="skill" value={formFilters.skill} onChange={updateFilter} placeholder="Skill" /></label>
